@@ -1,0 +1,69 @@
+//Departments
+const departments=[
+    {
+        id:1,
+        name:"❤️ Cardiology",
+        image:"assets/images/cardiology2.jpg",
+        description:"Expert treatment for heart-related diseases with modern diagnostic facilities.",
+        page:"cardiology.html"
+    },
+    {
+        id:2,
+        name:"🧠 Neurology",
+        image:"assets/images/neurology2.avif",
+        description:"Diagnosis and treatment of brain, spine, and nervous system disorders..",
+        page:"neurology.html"
+    },
+    {
+        id:3,
+        name:"🦴 Orthopedics",
+        image:"assets/images/orthopedics2.jpg",
+        description:"Comprehensive care for bones, joints, muscles, and sports injuries.",
+        page:"orthopedics.html"
+    },
+    {
+        id:4,
+        name:"👶 Pediatrics",
+        image:"assets/images/pediatrics2.jpeg",
+        description:"Specialized healthcare for infants, children,and teenagers.",
+        page:"pediatrics.html"
+    },
+    {
+        id:5,
+        name:"🌿 Dermatology",
+        image:"assets/images/dermatology2.jpg",
+        description:"Advanced skin, hair, and nail care with modern treatment options.",
+        page:"dermatology.html"
+    },
+    {
+        id:6,
+        name:"🦷 Dentistry",
+        image:"assets/images/dentistry2.jpg",
+        description:"Complete dental care including cleaning, braces, implants, and cosmetic dentistry.",
+        page:"dentistry.html"
+    }
+]
+const departmentContainer=document.getElementById("departmentContainer")
+
+
+departments.forEach((department,index)=>{
+    setTimeout(()=>{
+        departmentContainer.innerHTML+=`
+        <div class="col-md-6 col-lg-4 department-card">
+            <div class="card shadow border-0 h-100 department-name">
+                <img src="${department.image}" class="card-img-top h-[150px]">
+                <div class="card-body">
+                    <h4>${department.name}</h4>
+                    <p class="justify-text text-muted">${department.description}</p>
+                    
+                    <a href="${department.page}" class="btn btn-primary mt-3">
+                        Learn More
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    `
+    },index*1000)
+})
+

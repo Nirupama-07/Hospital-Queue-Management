@@ -1,0 +1,22 @@
+.hero{
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+.hero img{
+    max-width: 100%;
+    height: auto;
+}
+.card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2) !important;
+}
+.carousel-control-prev-icon{
+    width: 9rem;
+    height: 3rem;
+}
