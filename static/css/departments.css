@@ -3,10 +3,11 @@
 =========================== */
 
 .department-hero {
+   
     position: relative;
     width: 100%;
     min-height: 70vh;
-    background: url("/assets/images/department.jpg") center/cover no-repeat;
+    background: url("/static/images/departmentHero.jpg") center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;

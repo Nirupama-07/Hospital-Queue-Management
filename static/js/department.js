@@ -49,20 +49,7 @@ const departmentContainer=document.getElementById("departmentContainer")
 departments.forEach((department,index)=>{
     setTimeout(()=>{
         departmentContainer.innerHTML+=`
-        <div class="col-md-6 col-lg-4 department-card">
-            <div class="card shadow border-0 h-100 department-name">
-                <img src="${department.image}" class="card-img-top h-[150px]">
-                <div class="card-body">
-                    <h4>${department.name}</h4>
-                    <p class="justify-text text-muted">${department.description}</p>
-                    
-                    <a href="${department.page}" class="btn btn-primary mt-3">
-                        Learn More
-                    </a>
-                </div>
-                
-            </div>
-        </div>
+        
     `
     },index*1000)
 })

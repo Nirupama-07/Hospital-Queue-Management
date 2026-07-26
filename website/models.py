@@ -14,7 +14,6 @@ class Services(models.Model):
     icon=models.CharField(max_length=3)
     title=models.CharField(max_length=20)
     description=models.TextField()
-    pages=models.CharField(max_length=100)
     render=models.CharField(max_length=50)
 
     def __str__(self):
