@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import Department
+from .models import Department,Testimonials,Services
 
 # Create your views here.
 def home(request):
     departments=Department.objects.all()
+    services=Services.objects.all()
     cards=[
         {
             "icon":"🩺",
@@ -36,7 +37,8 @@ def home(request):
             "description":"Check your token number and waiting status in real time."
         }
     ]
-    return render(request,"website/index.html",{"departments":departments,"cards":cards})
+    testimonials=Testimonials.objects.all()
+    return render(request,"website/index.html",{"departments":departments,"services":services,"cards":cards,"testimonials":testimonials})
 
 def emergency(request):
     return render(request,"website/emergency.html")

@@ -21,63 +21,6 @@ counter("patientCount",1000,1);
 counter("experienceCount",25,80);
 
 
-// departments
-
-const departments=[
-    {
-        id:1,
-        name:"❤️ Cardiology",
-        image:"{% static 'images/cardiology.jpg' %}",
-        description:"Expert treatment for heart-related diseases with modern diagnostic facilities."
-    },
-    {
-        id:2,
-        name:"🧠 Neurology",
-        image:"assets/images/neurology.jpg",
-        description:"Diagnosis and treatment of brain, spine, and nervous system disorders.."
-    },
-    {
-        id:3,
-        name:"🦴 Orthopedics",
-        image:"assets/images/orthopedics.jpg",
-        description:"Comprehensive care for bones, joints, muscles, and sports injuries."
-    },
-    {
-        id:4,
-        name:"👶 Pediatrics",
-        image:"assets/images/pediatrics.jpg",
-        description:"Specialized healthcare for infants, children,and teenagers."
-    },
-    {
-        id:5,
-        name:"🌿 Dermatology",
-        image:"assets/images/dermatology.jpeg",
-        description:"Advanced skin, hair, and nail care with modern treatment options."
-    },
-    {
-        id:6,
-        name:"🦷 Dentistry",
-        image:"assets/images/dentistry.jpg",
-        description:"Complete dental care including cleaning, braces, implants, and cosmetic dentistry."
-    },
-]
-
-const departmentContainer=document.getElementById("departmentContainer")
-
-departments.forEach((department)=>{
-    departmentContainer.innerHTML +=
-    `
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow border-0 h-100">
-                <img src="${department.image}" class="card-img-top">
-                <div class="card-body">
-                    <h4>${department.name}</h4>
-                    <p>${department.description}</p>
-                </div>
-            </div>
-        </div>
-    `
-})
 
 
 const newsContainer=document.getElementById("newsContainer")

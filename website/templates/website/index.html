@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Home
+Home-CityCare
 {% endblock %}
 
 {% block content %}
@@ -68,55 +68,19 @@ Home
             <p class="text-muted">Access all hospital services from one place</p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="card border-0 shadow h-100 text-center p-4">
-                    <div class="display-4">📅</div>
-                    <h3>Book Appointment</h3>
-                    <p class="text-muted">
-                        Schedule appointments with expert doctors in just a few clicks
-                    </p>
-                    <a href="appointment.html" class="btn btn-primary">Book Now</a>
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow h-100 text-center p-4">
+                        <div class="display-4">{{ service.icon }}</div>
+                        <h3>{{ service.title }}</h3>
+                        <p class="text-muted">
+                            {{ service.description }}
+                        </p>
+                        <a href="{{ service.page }}" class="btn btn-primary">{{ service.render }}</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card border-0 shadow h-100 text-center p-4">
-                    <div class="display-4">👩‍⚕️</div>
-                    <h3>Find Doctor</h3>
-                    <p class="text-muted">
-                        Browse doctors by department and availability
-                    </p>
-                    <a href="doctors.html" class="btn btn-primary">View Doctors</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card border-0 shadow h-100 text-center p-4">
-                    <div class="display-4">🎟</div>
-                    <h3>Queue Status</h3>
-                    <p class="text-muted">
-                        Check your live queue number and estimated waiting line
-                    </p>
-                    <a href="queue.html" class="btn btn-primary">Check Queue</a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card border-0 shadow h-100 text-center p-4">
-                    <div class="display-4">🚑</div>
-                    <h3>Emergency</h3>
-                    <p class="text-muted">
-                        Get Immediate emergency assistance and ambulance support
-                    </p>
-
-                    <a href="tel:9348200847" class="btn btn-danger" style="text-decoration: none; color: white;">Call
-                        Now</a>
-                    <p>
-
-                    </p>
-                </div>
-            </div>
+            {% endfor %}     
         </div>
     </div>
 </section>
@@ -279,105 +243,42 @@ Home
             <div class="carousel-inner">
 
                 <!-- Testimonial 1 -->
+                {% for testimonial in testimonials %}
+                    <div class="carousel-item active">
 
-                <div class="carousel-item active">
+                        <div class="card border-0 shadow-lg p-4 mx-auto" style="max-width:700px;">
 
-                    <div class="card border-0 shadow-lg p-4 mx-auto" style="max-width:700px;">
+                            <div class="text-center">
 
-                        <div class="text-center">
+                                <img src="{{ testimonial.image.url }}" class="rounded-circle mb-3" width="90"
+                                    height="90" alt="Patient">
 
-                            <img src="./assets/images/cardiology-patient.jpg" class="rounded-circle mb-3" width="90"
-                                height="90" alt="Patient">
+                                <h4>{{ testimonial.name }}</h4>
 
-                            <h4>Rahul Sharma</h4>
+                                <small class="text-primary">
+                                    {{ testimonial.disease }}
+                                </small>
 
-                            <small class="text-primary">
-                                Cardiology Patient
-                            </small>
+                                <p class="mt-3">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= testimonial.rating %}
+                                            ⭐
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
 
-                            <p class="mt-3">
-                                ⭐⭐⭐⭐⭐
-                            </p>
+                                <p class="lead">
+                                    {{ testimonial.description }}
+                                </p>
 
-                            <p class="lead">
-                                "The doctors were very professional and caring.
-                                The online appointment system was simple and
-                                saved me a lot of time."
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Testimonial 2 -->
-
-                <div class="carousel-item">
-
-                    <div class="card border-0 shadow-lg p-4 mx-auto" style="max-width:700px;">
-
-                        <div class="text-center">
-
-                            <img src="./assets/images/neurology-patient.jpeg" class="rounded-circle mb-3" width="90"
-                                height="90" alt="Patient">
-
-                            <h4>Priya Das</h4>
-
-                            <small class="text-primary">
-                                Neurology Patient
-                            </small>
-
-                            <p class="mt-3">
-                                ⭐⭐⭐⭐⭐
-                            </p>
-
-                            <p class="lead">
-                                "Excellent facilities, experienced doctors and
-                                a very friendly staff. I highly recommend
-                                CityCare Hospital."
-                            </p>
+                            </div>
 
                         </div>
 
                     </div>
+                {% endfor %}
 
-                </div>
-
-                <!-- Testimonial 3 -->
-
-                <div class="carousel-item mt-5">
-
-                    <div class="card border-0 shadow-lg p-4 mx-auto" style="max-width:700px;">
-
-                        <div class="text-center">
-
-                            <img src="./assets/images/Orthopedic-patient.webp" class="rounded-circle mb-3" width="90"
-                                height="90" alt="Patient">
-
-                            <h4>Amit Kumar</h4>
-
-                            <small class="text-primary">
-                                Orthopedic Patient
-                            </small>
-
-                            <p class="mt-3">
-                                ⭐⭐⭐⭐⭐
-                            </p>
-
-                            <p class="lead">
-                                "The live queue tracking feature made my visit
-                                stress-free. Everything was organized and easy
-                                to use."
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+                
 
             <!-- Previous Button -->
 
