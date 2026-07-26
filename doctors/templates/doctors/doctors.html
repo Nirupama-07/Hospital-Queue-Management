@@ -31,7 +31,36 @@ Doctors-CityCare
         </div>
 
         <div class="row g-4 mt-5" id="doctorContainer">
+            {% for doctor in doctors %}
+            <div class="col-md-6 col-lg-4 doctor-card">
+                
+                    <div class="card shadow border-0 h-100">
 
+                        <img src="{{ doctor.image.url }}" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h4>{{ doctor.name }}</h4>
+
+                            <p class="text-primary fw-semibold">{{ doctor.specialist }}</p>
+
+                            <p><i class="fa-solid fa-briefcase"></i> {{ doctor.experience }} Years Experience</p>
+
+                            <p><i class="fa-solid fa-indian-rupee-sign"></i> Consultation Fee: {{ doctor.fee }}</p>
+
+                            <a href="#">
+                                <button class="btn btn-primary button w-100">
+                                    Book Appointment
+                                </button>
+                            </a>
+
+                        </div>
+
+                    </div>
+               
+
+            </div>
+             {% endfor %}
         </div>
 
     </section>
@@ -49,64 +78,21 @@ Doctors-CityCare
             </div>
 
             <div class="row text-center g-4">
+                {% for card in cards %}
+                    <div class="col-md-6 col-lg-3">
+                        <div class="process-card">
+                            <div class="process-icon">
+                                <i class="{{ card.icon }}"></i>
+                            </div>
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <i class="fa-solid fa-user-doctor"></i>
+                            <h4>{{ card.title }}</h4>
+
+                            <p>
+                                {{ card.description }}
+                            </p>
                         </div>
-
-                        <h4>Find a Doctor</h4>
-
-                        <p>
-                            Browse our experienced specialists and choose the doctor that best suits your healthcare
-                            needs.
-                        </p>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-
-                        <h4>Book Appointment</h4>
-
-                        <p>
-                            Select your preferred date and time to schedule an appointment online in minutes.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <i class="fa-solid fa-stethoscope"></i>
-                        </div>
-
-                        <h4>Consult the Doctor</h4>
-
-                        <p>
-                            Meet your specialist for diagnosis, treatment planning, and expert medical advice.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-
-                        <h4>Follow-Up Care</h4>
-
-                        <p>
-                            Receive continuous support, follow-up appointments, and personalized healthcare guidance.
-                        </p>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
 
         </div>

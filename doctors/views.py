@@ -1,5 +1,5 @@
-from django.shortcuts import render,get_object_or_404
-from .models import Department
+from django.shortcuts import render
+from .models import Department, Doctors
 
 # Create your views here.
 def department(request):
@@ -7,4 +7,27 @@ def department(request):
     return render(request, "doctors/departments.html", {"cards": cards})
 
 def doctors(request):
-    return render(request,"doctors/doctors.html")
+    doctors=Doctors.objects.all()
+    cards=[
+        {
+            "icon":"fa-solid fa-user-doctor",
+            "title":"Find a Doctor",
+            "description":"Browse our experienced specialists and choose the doctor that best suits your healthcare needs."
+        },
+        {
+            "icon":"fa-solid fa-calendar-check",
+            "title":"Book Appointment",
+            "description":"Select your preferred date and time to schedule an appointment online in minutes."
+        },
+        {
+            "icon":"fa-solid fa-stethoscope",
+            "title":"Consult the Doctor",
+            "description":"Meet your specialist for diagnosis, treatment planning, and expert medical advice."
+        },
+        {
+            "icon":"fa-solid fa-heart-pulse",
+            "title":"Follow-Up Care",
+            "description":"Receive continuous support, follow-up appointments, and personalized healthcare guidance."
+        }
+    ]
+    return render(request,"doctors/doctors.html",{"doctors":doctors, "cards":cards})

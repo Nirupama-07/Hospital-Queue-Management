@@ -58,33 +58,7 @@ function displayDoctors(data) {
     data.forEach(doctor => {
 
         doctorContainer.innerHTML += `
-            <div class="col-md-6 col-lg-4 doctor-card">
-
-                <div class="card shadow border-0 h-100">
-
-                    <img src="${doctor.image}" class="card-img-top">
-
-                    <div class="card-body">
-
-                        <h4>${doctor.name}</h4>
-
-                        <p class="text-primary fw-semibold">${doctor.specialization}</p>
-
-                        <p><i class="fa-solid fa-briefcase"></i> ${doctor.experience}</p>
-
-                        <p><i class="fa-solid fa-indian-rupee-sign"></i> Consultation Fee: ${doctor.fee}</p>
-
-                        <a href=${doctor.page}>
-                            <button class="btn btn-primary button w-100">
-                                Book Appointment
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
+            
         `;
 
     });
