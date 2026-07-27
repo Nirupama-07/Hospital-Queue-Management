@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Department, Doctors
+from django.db.models import Q
 
 # Create your views here.
 def department(request):
@@ -7,7 +8,13 @@ def department(request):
     return render(request, "doctors/departments.html", {"cards": cards})
 
 def doctors(request):
+    query=request.GET.get("q")
     doctors=Doctors.objects.all()
+    if query:
+        doctors = doctors.filter(
+            Q(name__icontains=query) |
+            Q(specialist__icontains=query)
+        )
     cards=[
         {
             "icon":"fa-solid fa-user-doctor",

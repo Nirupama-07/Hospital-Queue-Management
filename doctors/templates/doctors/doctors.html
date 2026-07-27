@@ -7,138 +7,146 @@ Doctors-CityCare
 
 {% block content %}
 
-    <section class="doctor-hero text-center text-white py-5">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Meet Our Expert Doctors</h1>
-            <p class="lead">
-                Our experienced specialists are committed to providing the highest quality healthcare.
-            </p>
-        </div>
-    </section>
+<section class="doctor-hero text-center text-white py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Meet Our Expert Doctors</h1>
+        <p class="lead">
+            Our experienced specialists are committed to providing the highest quality healthcare.
+        </p>
+    </div>
+</section>
 
-    <section class="container py-5">
+<section class="container py-5">
 
+    <form method="GET">
         <div class="row mb-6">
             <div class="col-md-6 mx-auto">
                 <div class="input-group">
                     <span class="input-group-text">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </span>
-                    <input type="text" class="form-control" id="doctorSearch"
-                        placeholder="Search by doctor name or specialty...">
+
+                    <input type="text" name="q" class="form-control" placeholder="Search by doctor name or specialty..."
+                        value="{{ request.GET.q }}">
+
+                    <button class="btn btn-primary" type="submit">
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
+    </form>
 
-        <div class="row g-4 mt-5" id="doctorContainer">
-            {% for doctor in doctors %}
-            <div class="col-md-6 col-lg-4 doctor-card">
-                
-                    <div class="card shadow border-0 h-100">
+    <div class="row g-4 mt-5" id="doctorContainer">
+        {% for doctor in doctors %}
+        <div class="col-md-6 col-lg-4 doctor-card">
 
-                        <img src="{{ doctor.image.url }}" class="card-img-top">
+            <div class="card shadow border-0 h-100">
 
-                        <div class="card-body">
+                <img src="{{ doctor.image.url }}" class="card-img-top">
 
-                            <h4>{{ doctor.name }}</h4>
+                <div class="card-body">
 
-                            <p class="text-primary fw-semibold">{{ doctor.specialist }}</p>
+                    <h4>{{ doctor.name }}</h4>
 
-                            <p><i class="fa-solid fa-briefcase"></i> {{ doctor.experience }} Years Experience</p>
+                    <p class="text-primary fw-semibold">{{ doctor.specialist }}</p>
 
-                            <p><i class="fa-solid fa-indian-rupee-sign"></i> Consultation Fee: {{ doctor.fee }}</p>
+                    <p><i class="fa-solid fa-briefcase"></i> {{ doctor.experience }} Years Experience</p>
 
-                            <a href="#">
-                                <button class="btn btn-primary button w-100">
-                                    Book Appointment
-                                </button>
-                            </a>
+                    <p><i class="fa-solid fa-indian-rupee-sign"></i> Consultation Fee: {{ doctor.fee }}</p>
 
-                        </div>
-
-                    </div>
-               
-
-            </div>
-             {% endfor %}
-        </div>
-
-    </section>
-
-    <section class="consultation-process py-5">
-
-        <div class="container">
-
-            <div class="text-center mb-5">
-                <span class="text-primary fw-semibold">Simple & Easy</span>
-                <h2 class="fw-bold mt-2">Consultation Process</h2>
-                <p class="text-muted">
-                    Get the healthcare you need in just a few simple steps.
-                </p>
-            </div>
-
-            <div class="row text-center g-4">
-                {% for card in cards %}
-                    <div class="col-md-6 col-lg-3">
-                        <div class="process-card">
-                            <div class="process-icon">
-                                <i class="{{ card.icon }}"></i>
-                            </div>
-
-                            <h4>{{ card.title }}</h4>
-
-                            <p>
-                                {{ card.description }}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="emergency-banner py-5">
-
-        <div class="container">
-
-            <div class="row align-items-center">
-
-                <div class="col-lg-8 text-white">
-
-                    <h2 class="fw-bold mb-3">
-                        <i class="fa-solid fa-truck-medical me-2"></i>
-                        24/7 Emergency Medical Services
-                    </h2>
-
-                    <p class="mb-0">
-                        Our emergency department is available around the clock with experienced doctors,
-                        advanced medical equipment, and ambulance support to provide immediate care when
-                        every second matters.
-                    </p>
-
-                </div>
-
-                <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0">
-
-                    <h3 class="text-warning fw-bold mb-3">
-                        <i class="fa-solid fa-phone-volume me-2"></i>
-                        +91 98765 43210
-                    </h3>
-
-                    <a href="tel:9876543210" class="btn btn-light btn-lg px-4">
-                        <i class="fa-solid fa-phone me-2"></i>
-                        Call Now
+                    <a href="#">
+                        <button class="btn btn-primary button w-100">
+                            Book Appointment
+                        </button>
                     </a>
 
                 </div>
 
             </div>
+            
+
+
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<section class="consultation-process py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <span class="text-primary fw-semibold">Simple & Easy</span>
+            <h2 class="fw-bold mt-2">Consultation Process</h2>
+            <p class="text-muted">
+                Get the healthcare you need in just a few simple steps.
+            </p>
+        </div>
+
+        <div class="row text-center g-4">
+            {% for card in cards %}
+            <div class="col-md-6 col-lg-3">
+                <div class="process-card">
+                    <div class="process-icon">
+                        <i class="{{ card.icon }}"></i>
+                    </div>
+
+                    <h4>{{ card.title }}</h4>
+
+                    <p>
+                        {{ card.description }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</section>
+
+<section class="emergency-banner py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8 text-white">
+
+                <h2 class="fw-bold mb-3">
+                    <i class="fa-solid fa-truck-medical me-2"></i>
+                    24/7 Emergency Medical Services
+                </h2>
+
+                <p class="mb-0">
+                    Our emergency department is available around the clock with experienced doctors,
+                    advanced medical equipment, and ambulance support to provide immediate care when
+                    every second matters.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end text-center mt-4 mt-lg-0">
+
+                <h3 class="text-warning fw-bold mb-3">
+                    <i class="fa-solid fa-phone-volume me-2"></i>
+                    +91 98765 43210
+                </h3>
+
+                <a href="tel:9876543210" class="btn btn-light btn-lg px-4">
+                    <i class="fa-solid fa-phone me-2"></i>
+                    Call Now
+                </a>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
 {% endblock %}
