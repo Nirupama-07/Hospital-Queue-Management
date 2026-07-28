@@ -88,11 +88,11 @@
 
                 <div class="d-flex gap-2">
 
-                    <a href="#" class="btn btn-outline-primary">
+                    <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary">
                         Login
                     </a>
 
-                    <a href="#" class="btn btn-primary">
+                    <a href="{% url 'accounts:signup' %}" class="btn btn-primary">
                         Sign Up
                     </a>
 
@@ -220,6 +220,7 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/auth.js' %}"></script>
+    <script src="{% static 'js/signup.js' %}"></script>
 
 </body>
 

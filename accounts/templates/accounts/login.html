@@ -24,23 +24,26 @@ Login-CityCare
 
         </div>
 
-        <form id="loginForm">
+        <form id="loginForm" method="POST">
+            {% csrf_token %}
 
             <!-- Email -->
 
             <div class="mb-3">
 
                 <label class="form-label fw-semibold">
-                    Email Address
+                    Username
                 </label>
 
                 <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    id="email"
-                    placeholder="Enter your email">
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username">
 
-                <small id="emailError"></small>
+
+                <small id="usernameError"></small>
 
             </div>
 
@@ -56,6 +59,7 @@ Login-CityCare
                     type="password"
                     class="form-control"
                     id="password"
+                    name="password"
                     placeholder="Enter your password">
 
                 <small id="passwordError"></small>
@@ -80,7 +84,7 @@ Login-CityCare
 
                 Don't have an account?
 
-                <a href="signup.html" class="fw-bold text-decoration-none">
+                <a href="{% url 'accounts:signup' %}" class="fw-bold text-decoration-none">
                     Create Account
                 </a>
 

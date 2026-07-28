@@ -1,91 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'accounts/base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup-CityCare</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="./assets/images/fav.png" type="image/x-icon">
-</head>
+{% block title %}
+Signup-CityCare
+{% endblock %}
 
-<body class="bg-light">
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width:550px; width:100%;">
+
+        <div class="text-center mb-4">
+            <i class="bi bi-hospital text-primary" style="font-size:55px;"></i>
+            <h2 class="fw-bold mt-2">Create Account</h2>
+            <p class="text-muted">
+                Sign up to access the Hospital Queue Management System
+            </p>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} ">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <form id="signupForm" method="POST">
+            {% csrf_token %}
 
 
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-
-        <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width:550px; width:100%;">
-
-            <div class="text-center mb-4">
-                <i class="bi bi-hospital text-primary" style="font-size:55px;"></i>
-                <h2 class="fw-bold mt-2">Create Account</h2>
-                <p class="text-muted">
-                    Sign up to access the Hospital Queue Management System
-                </p>
+            <!-- Name -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Username</label>
+                <input type="text" class="form-control" id="name" name="username" placeholder="Enter a Username">
+                <small id="nameError"></small>
             </div>
 
-            <form id="signupForm">
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                <small id="emailError"></small>
+            </div>
 
-                <!-- Name -->
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Full Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your full name">
-                    <small id="nameError"></small>
-                </div>
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Create password">
+                <small id="passwordError"></small>
+            </div>
 
-                <!-- Email -->
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                    <small id="emailError"></small>
-                </div>
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                    placeholder="Confirm password">
+                <small id="confirmPasswordError"></small>
+            </div>
 
-                <!-- Mobile -->
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Mobile Number</label>
-                    <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number">
-                    <small id="mobileError"></small>
-                </div>
+            <button class="btn btn-primary w-100 py-2 fw-semibold">
+                Create Account
+            </button>
 
-                <!-- Password -->
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Create password">
-                    <small id="passwordError"></small>
-                </div>
+            <p id="signupMsg" class="text-center mt-3 fw-bold"></p>
 
-                <!-- Confirm Password -->
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
-                    <small id="confirmPasswordError"></small>
-                </div>
+            <hr>
 
-                <button class="btn btn-primary w-100 py-2 fw-semibold">
-                    Create Account
-                </button>
+            <p class="text-center mb-0">
+                Already have an account?
+                <a href="{% url 'accounts:login' %}" class="text-decoration-none fw-bold">
+                    Login
+                </a>
+            </p>
 
-                <p id="signupMsg" class="text-center mt-3 fw-bold"></p>
-
-                <hr>
-
-                <p class="text-center mb-0">
-                    Already have an account?
-                    <a href="login.html" class="text-decoration-none fw-bold">
-                        Login
-                    </a>
-                </p>
-
-            </form>
-
-        </div>
+        </form>
 
     </div>
 
+</div>
 
 
-    <script src="assets/js/signup.js"></script>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-</body>
 
-</html>
+{% endblock %}
