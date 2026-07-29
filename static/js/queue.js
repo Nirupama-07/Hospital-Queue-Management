@@ -1,7 +1,4 @@
-if (localStorage.getItem("isLoggedIn") !== "true") {
-    alert("Please login first.");
-    window.location.replace("login.html");
-}
+
 const patientName = localStorage.getItem("patientName");
 const department = localStorage.getItem("department");
 const doctor = localStorage.getItem("doctor");
