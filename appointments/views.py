@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import AppointmentForm
 from .models import Appointment
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url="accounts:login")
 def appointment(request):
 
     if request.method == "POST":

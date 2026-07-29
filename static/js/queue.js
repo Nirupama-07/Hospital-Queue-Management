@@ -1,100 +1,59 @@
+const appointments=JSON.parse(localStorage.getItem("appointments")) || []
 
-const patientName = localStorage.getItem("patientName");
-const department = localStorage.getItem("department");
-const doctor = localStorage.getItem("doctor");
-const token = localStorage.getItem("token");
+if(appointments.length===0){
+    alert("No appointment found")
+}
 
-document.getElementById("queuePatientName").textContent = patientName;
-document.getElementById("queueDepartment").textContent = department;
-document.getElementById("queueDoctor").textContent = doctor;
-document.getElementById("queueToken").textContent = token;
+const appointment=appointments[appointments.length - 1]
 
-// Patient Details
-document.getElementById("queuePatientName").textContent =
-    localStorage.getItem("patientName");
+document.getElementById("queuePatientName").innerText=appointment.name
+document.getElementById("queueDepartment").innerText=appointment.department
+document.getElementById("queueDoctor").innerText=appointment.doctor
 
-document.getElementById("queueDepartment").textContent =
-    localStorage.getItem("department");
+document.getElementById("queueToken").innerText=appointment.token
 
-document.getElementById("queueDoctor").textContent =
-    localStorage.getItem("doctor");
+const currentTokenNumber =Number(localStorage.getItem("currentToken")) || 1;
+document.getElementById("currentToken").innerText =`HQ-${String(currentTokenNumber).padStart(4, "0")}`;
 
-const patientToken = localStorage.getItem("token");
+setInterval(() => {
 
-document.getElementById("queueToken").textContent = patientToken;
+    let current = Number(localStorage.getItem("currentToken")) || 1;
 
+    current++;
 
-// -------------------------
-// Queue Simulation
-// -------------------------
+    localStorage.setItem("currentToken", current);
 
-// Convert "HQ-1007" → 1007
-let patientNumber = parseInt(patientToken.split("-")[1]);
+    // location.reload();
 
-// Queue starts 5 patients before yours
-let currentNumber = patientNumber - 5;
+}, 10000);
 
-let peopleAhead = patientNumber - currentNumber;
+const userTokenNumber = Number(
+    appointment.token.replace("HQ-", "")
+);
+const peopleAhead = Math.max(
+    userTokenNumber - currentTokenNumber,
+    0
+);
+document.getElementById("peopleAhead").innerText = peopleAhead;
 
-document.getElementById("currentToken").textContent =
-    "HQ-" + currentNumber;
+const waitingTime = peopleAhead * 1;
+document.getElementById("waitingTime").innerText = `${waitingTime} mins`;
 
-document.getElementById("peopleAhead").textContent =
-    peopleAhead;
+const queueStatus = document.getElementById("queueStatus");
 
-document.getElementById("waitingTime").textContent =
-    peopleAhead * 5 + " mins";
+if (userTokenNumber > currentTokenNumber) {
+    queueStatus.innerText="waiting"
+}
+else if (userTokenNumber === currentTokenNumber) {
+    queueStatus.innerText="Now Serving"
+    queueStatus.className = "badge bg-success fs-5 px-3 py-2";
+}
+else {
+    queueStatus.innerText="completed"
+    queueStatus.className = "badge bg-secondary fs-5 px-3 py-2";
+}
 
-const status = document.getElementById("queueStatus");
-
-let interval = setInterval(function () {
-
-    currentNumber++;
-
-    peopleAhead = patientNumber - currentNumber;
-
-    document.getElementById("currentToken").textContent =
-        "HQ-" + currentNumber;
-
-    document.getElementById("peopleAhead").textContent =
-        Math.max(peopleAhead, 0);
-
-    document.getElementById("waitingTime").textContent =
-        Math.max(peopleAhead * 5, 0) + " mins";
-
-    if (currentNumber < patientNumber) {
-
-        status.textContent = "Waiting";
-        status.className = "badge bg-warning fs-5 px-3 py-2";
-
-    }
-
-    else if (currentNumber === patientNumber) {
-
-        status.textContent = "Your Turn";
-        status.className = "badge bg-success fs-5 px-3 py-2";
-
-    }
-
-    else {
-
-        status.textContent = "Consultation Completed";
-        status.className = "badge bg-primary fs-5 px-3 py-2";
-
-        clearInterval(interval);
-
-    }
-
-}, 8000);
-
-document.getElementById("appointmentDoctor").textContent =
-    localStorage.getItem("doctor");
-
-document.getElementById("appointmentDepartment").textContent =
-    localStorage.getItem("department");
-
-document.getElementById("appointmentDate").textContent =
-    localStorage.getItem("date");
-
-document.getElementById("appointmentTime").textContent =
-    localStorage.getItem("time");
+document.getElementById("appointmentDoctor").innerText=appointment.doctor
+document.getElementById("appointmentDepartment").innerText=appointment.department
+document.getElementById("appointmentDate").innerText=appointment.date
+document.getElementById("appointmentTime").innerText=appointment.time

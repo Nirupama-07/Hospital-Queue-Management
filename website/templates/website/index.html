@@ -28,8 +28,8 @@ Home-CityCare
                 </p>
 
                 <div class="d-flex flex-wrap gap-3 mb-5">
-                    <a href="appointment.html" class="btn btn-primary btn-lg">Appointment</a>
-                    <a href="doctors.html" class="btn btn-outline-primary btn-lg">Find a Doctor</a>
+                    <a href="{% url 'appointments:appointments' %}" class="btn btn-primary btn-lg">Appointment</a>
+                    <a href="{% url 'doctors:doctors' %}" class="btn btn-outline-primary btn-lg">Find a Doctor</a>
                 </div>
 
                 <div class="row text-center mt-5">
@@ -77,16 +77,15 @@ Home-CityCare
                     <p class="text-muted">
                         {{ service.description }}
                     </p>
-                  
 
-                    {% if service.title == "Find Doctor" %}
-                        <a href="{% url 'doctors:doctors' %}" class="btn btn-primary">{{ service.render }}</a>
 
-                   
-                    {% endif %}
+                    
                 </div>
             </div>
             {% endfor %}
+            
+
+            
         </div>
     </div>
 </section>
@@ -337,7 +336,7 @@ Home-CityCare
                     📞 Call Now
                 </a>
 
-                <a href="appointment.html" class="btn btn-outline-light btn-lg">
+                <a href="{% url 'appointments:appointments' %}" class="btn btn-outline-light btn-lg">
                     Book Appointment
                 </a>
 

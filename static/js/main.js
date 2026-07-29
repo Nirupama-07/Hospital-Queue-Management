@@ -53,7 +53,7 @@ fetch(`https://api.currentsapi.services/v1/latest-news?language=en&category=heal
         news.image !== "None" &&
         news.image !== "null"
             ? news.image
-            : "./assets/images/placeholder.jpg";
+            : "{% static 'images/placeholder.jpg' %}";
 
             newsContainer.innerHTML += `
             <div class="col-md-6 col-lg-4">
