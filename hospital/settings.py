@@ -24,11 +24,14 @@ STATICFILES_DIRS = [
 SECRET_KEY = 'django-insecure-b#rtqi!22@98nt2@+p65odqka*&uy)ei7i1+du=*4gcne+@8%4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import os
+
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "hospital-queue-management-86tw.onrender.com",
 ]
 
 
